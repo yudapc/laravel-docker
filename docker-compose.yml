@@ -1,0 +1,44 @@
+services:
+  # Laravel app service using Bitnami Laravel image
+  app:
+    image: bitnami/laravel:11.3.2
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=laravel_db
+      - DB_USERNAME=dev
+      - DB_PASSWORD=secret
+    ports:
+      - 8000:8000
+    volumes:
+      - ./site:/app
+    depends_on:
+      - db
+
+  # MariaDB service default port 3306
+  db:
+    image: mariadb:10.5.12
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: laravel_db
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: secret
+    volumes:
+      - ./db_data:/var/lib/mysql
+
+  # phpMyAdmin service
+  phpmyadmin:
+    image: phpmyadmin:5.2.1
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+

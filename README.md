@@ -19,6 +19,11 @@ Install specific package:
 docker compose exec app composer require <package_name>
 ```
 
+Show database:
+```
+docker compose exec app php artisan config:show database
+```
+
 Commands:
 ```
 docker compose exec app composer install

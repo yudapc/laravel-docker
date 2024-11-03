@@ -9,14 +9,14 @@
     <ul class="list-group">
         @foreach ($todos as $todo)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="{{ route('todos.show', $todo->id) }}" style="{{ $todo->completed ? 'text-decoration: line-through;' : '' }}">{{ $todo->title }}</a>
+                <a href="{{ route('todos.show', $todo->id) }}" style="{{ $todo->is_completed ? 'text-decoration: line-through;' : '' }}">{{ $todo->title }}</a>
                 <div>
                     <form action="{{ route('todos.complete', $todo->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('PATCH')
-                        <input type="hidden" name="completed" value="{{ $todo->completed ? 0 : 1 }}">
-                        <button type="submit" class="btn btn-{{ $todo->completed ? 'warning' : 'success' }}">
-                            {{ $todo->completed ? 'Mark as Incomplete' : 'Mark as Done' }}
+                        <input type="hidden" name="is_completed" value="{{ $todo->is_completed ? 0 : 1 }}">
+                        <button type="submit" class="btn btn-{{ $todo->is_completed ? 'warning' : 'success' }}">
+                            {{ $todo->is_completed ? 'Mark as Incomplete' : 'Mark as Done' }}
                         </button>
                     </form>
                     <a href="{{ route('todos.edit', $todo->id) }}" class="btn btn-secondary btn-sm">Edit</a>

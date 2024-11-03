@@ -17,7 +17,7 @@ class Todo extends Model
         'title',
         'description',
         'category_id',
-        'completed',
+        'is_completed',
         'user_id',
     ];
 

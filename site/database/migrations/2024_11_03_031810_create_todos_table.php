@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->boolean('completed')->default(false);
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }
